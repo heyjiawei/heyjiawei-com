@@ -7,19 +7,16 @@ html {
 body {
     background: linear-gradient(#edede7, #e3e5da);
     height: inherit;
-}
-
-svg {
-    position: fixed;
-    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .about {
     text-align: center;
-    position: relative;
-    top: 15%;
     font-family: 'Roboto', sans-serif;   
     color: #787d7d;
+    margin: auto 0;
 }
 
 .name {
