@@ -8,7 +8,6 @@ body {
     background: linear-gradient(#edede7, #e3e5da);
     height: inherit;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -17,6 +16,7 @@ body {
     font-family: 'Roboto', sans-serif;   
     color: #787d7d;
     margin: auto 0;
+    padding: 2em 0;
 }
 
 .name {
@@ -66,4 +66,25 @@ body {
 
 .button:first-child {
     margin-right: 1em;
+}
+
+@media screen and (orientation: portrait) {
+    body {
+        flex-direction: column;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        flex-direction: row;
+    }
+
+    svg {
+        min-width: 50%;
+    }
+
+    .about {
+        padding: 0;
+        margin: auto;
+    }
 }
