@@ -2,6 +2,7 @@
 
 html {
     height: 100%;
+    font-size: 16px;
 }
 
 body {
@@ -15,26 +16,27 @@ body {
     text-align: center;
     font-family: 'Roboto', sans-serif;   
     color: #787d7d;
-    margin: auto 0;
+    margin: auto;
     padding: 2em 0;
 }
 
 .name {
     font-family: 'Raleway', sans-serif;
-    font-size: 4em;
+    font-size: 7vmin;
     color: #2a3236;
     margin: 0;
 }
 
 .details {
-    font-size: 1.8em;
+    font-size: 3.5vmin;
 }
 
 .social {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 2em;
-    font-size: 1.4em;
+    margin-top: 2.5vmin;
+    font-size: 2.5vmin;
+    padding: 0;
 }
 
 .social > li {
@@ -47,9 +49,9 @@ body {
 }
 
 .button {
-    padding: 0.8em 2em;
-    font-size: 1.5em;
-    border-radius: 3em;
+    padding: 2vmin 6vmin;
+    font-size: 3.5vmin;
+    border-radius: 48px;
     color: #0f9980;
     background-color: transparent;
     border: 2px solid #0f9980;
@@ -64,17 +66,13 @@ body {
     background-color: #0f9980;
 }
 
-.button:first-child {
-    margin-right: 1em;
-}
-
-@media screen and (orientation: portrait) {
+@media only screen and (orientation: portrait) {
     body {
         flex-direction: column;
     }
 }
 
-@media screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
     body {
         flex-direction: row;
     }
@@ -85,6 +83,5 @@ body {
 
     .about {
         padding: 0;
-        margin: auto;
     }
 }
