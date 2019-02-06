@@ -18,6 +18,7 @@ body {
     color: #787d7d;
     margin: auto;
     padding: 2em 0;
+    white-space: nowrap;
 }
 
 .name {
