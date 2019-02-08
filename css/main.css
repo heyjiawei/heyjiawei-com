@@ -10,6 +10,7 @@ body {
     height: inherit;
     display: flex;
     justify-content: space-between;
+    margin: 0;
 }
 
 .about {
@@ -79,7 +80,14 @@ body {
     }
 
     svg {
-        min-width: 50%;
+        max-height: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .svgWrapper {
+        width: 50%;
+        position: relative;
     }
 
     .about {
