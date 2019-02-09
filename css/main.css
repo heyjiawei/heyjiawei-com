@@ -72,6 +72,8 @@ body {
     body {
         flex-direction: column;
     }
+
+    
 }
 
 @media only screen and (orientation: landscape) {
