@@ -61,6 +61,7 @@ body {
     cursor: pointer;
     transition-property: color, background-color;
     transition-duration: 0.3s;
+    display: inline-block;
 }
 
 .button:hover, .button:focus {
