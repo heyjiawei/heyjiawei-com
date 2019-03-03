@@ -43,6 +43,12 @@ body {
 
 .social > li {
     list-style-type: none;
+    transition: color 0.3s ease-in;
+}
+
+.social > li:hover {
+    color: #2a3236;
+    transition: color 0.3s ease;
 }
 
 .social a {
