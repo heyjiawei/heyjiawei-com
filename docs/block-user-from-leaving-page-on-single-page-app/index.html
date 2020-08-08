@@ -71,7 +71,7 @@
 <p>Traditional pages serve up a new page on every navigation. If you check your network tab in your browser, on navigation, you would see a new HTML page and its resources being sent. This new page loads a new document every time. Therefore, traditional web pages can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event" target="_blank">beforeunload event</a> to provide us with the feature we want. Also, note that this event is <strong>cancellable</strong>. That means developers can use <code class="language-text">event.preventDefault()</code> to prevent the event from happening.</p>
 <p>SPA on the other hand have to implement their own routing. On clicking a link (or navigation actions), SPA should not make a request to the server to fetch a new fresh HTML page. The URL can change but the document should stay the same.</p>
 <ul>
-<li>So previously in traditional web page, 1 URL would usually be tied to a single page and the routing is handled on the server side. (Let’s disregarding the hash on URLs)</li>
+<li>So previously in traditional web page, 1 URL would usually be tied to a single page and the routing is handled on the server side. (Let’s disregard the hash on URLs)</li>
 <li>With SPA, routing is handled on the client side by the SPA itself. On matching a route, it will trigger the rerender of the app. <strong>This means that your URL and document are now independent of of each other and your SPA has to synchronise them to mimic traditional web pages behaviour</strong></li>
 </ul>
 <h3 id="history-api" style="position:relative;"><a href="#history-api" aria-label="history api permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>History API</h3>
@@ -80,12 +80,13 @@
 <ul>
 <li>reuse the active document</li>
 <li>update the URL and also simultaneously add this new URL location into the browser history session</li>
+<li>store a state with a URL location</li>
 <li>call the browser’s back or forward action or go to any history session entry in the history session stack via <code class="language-text">go()</code></li>
 </ul>
 <p>However, it has a few limitations:</p>
 <ul>
 <li>You cannot manipulate the history object</li>
-<li>You will not know the previous locations, dispite having the means to traverse to them</li>
+<li>You will not know the previous locations, despite having the means to traverse to them</li>
 </ul>
 <h3 id="popstate-event" style="position:relative;"><a href="#popstate-event" aria-label="popstate event permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Popstate event</h3>
 <p><code class="language-text">beforeunload</code> event does not work on SPA “pages”. But there is a similar event for SPA and that is <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event" target="_blank">popstate event</a>. Popstate event is triggered by any of the following:</p>
@@ -104,6 +105,8 @@
 </ol>
 <p>We can see that the <strong>URL location changed before popstate event is sent.</strong> Therefore, within the popstate event listener, we can expect the URL location to be the different from that of the current page.</p>
 <h3 id="history-blocking-strategy-from-react-router" style="position:relative;"><a href="#history-blocking-strategy-from-react-router" aria-label="history blocking strategy from react router permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>History blocking strategy from React Router</h3>
+<p><strong>Update: 8 August 2020:</strong>
+There are 2 ways history blocking will activate. The first is an in-app redirection; when you click on a redirect link within the SPA. The second is when you click on a browser back or forward button. An in-app redirection can be handled by checking if the new location is a blocked location. However the second redirection has to be caught and handled with popstate event handler; This section explains the history blocking strategy of the second redirection method.</p>
 <p>As <code class="language-text">popstate</code> event cannot be cancelled, history blocking is done as follows:</p>
 <ol>
 <li>On page load, instantiate an array. This array will be used to track the history location. Let the first page we are at be index 0.</li>
